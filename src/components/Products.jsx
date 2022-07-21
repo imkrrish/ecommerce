@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { fetchProducts } from "../store/productsSlice";
 import { setProduct } from "../store/productsSlice";
 import { STATUSES } from "../store/productsSlice";
@@ -9,6 +9,12 @@ const Products = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { data: products, status } = useSelector((state) => state.product);
+
+  const handler = (product) => {
+    dispatch(setProduct(product));
+    navigate("/product");
+  };
+
   useEffect(() => {
     dispatch(fetchProducts());
   }, []);
@@ -20,11 +26,6 @@ const Products = () => {
   if (status === STATUSES.ERROR) {
     return <h2>Something went wrong!</h2>;
   }
-
-  const handler = (product) => {
-    dispatch(setProduct(product));
-    navigate("/product");
-  };
   return (
     <>
       <section id="collection" className="py-5">
@@ -66,16 +67,20 @@ const Products = () => {
                     }}
                   >
                     <div className="special-img d-flex flex-wrap justify-content-center position-relative overflow-hidden mt-2">
-                      <img src={product.image} className="img" />
+                      <img
+                        src={product.image}
+                        className="img"
+                        alt={product.title}
+                      />
                     </div>
                     <div class="text-center">
                       <p className="text-capitalize mt-3 mb-1">
                         {product.title}
                       </p>
                       <span className="fw-bold d-block">${product.price}</span>
-                      <a href="#" className="btn btn-primary mt-3 mb-3">
+                      <NavLink to="/" className="btn btn-primary mt-3 mb-3">
                         Add to Cart
-                      </a>
+                      </NavLink>
                     </div>
                   </div>
                 </div>

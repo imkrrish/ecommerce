@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import Products from "./Products";
 
 const Home = () => {
@@ -16,18 +17,18 @@ const Home = () => {
             <h1 className="text-uppercase py-2 fw-bold text-white">
               new arrivals
             </h1>
-            <a href="#" className="btn mt-3 text-uppercase">
+            <NavLink to="/" className="btn mt-3 text-uppercase">
               shop now
-            </a>
+            </NavLink>
           </div>
           <div className="text-center carousel-item">
             <h2 className="text-capitalize text-white">best price & offer</h2>
             <h1 className="text-uppercase py-2 fw-bold text-white">
               new season
             </h1>
-            <a href="#" className="btn mt-3 text-uppercase">
+            <NavLink to="/" className="btn mt-3 text-uppercase">
               buy now
-            </a>
+            </NavLink>
           </div>
         </div>
 
